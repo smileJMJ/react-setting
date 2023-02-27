@@ -125,6 +125,24 @@ root
 
 <br/>
 
+##### ※ dist/js, dist/css 폴더 분리 필요할 때!
+```
+const RemoveEmptyScripts = require('webpack-remove-empty-scripts');
+...
+entry: {
+    '/js/main': `${path.resolve(__dirname, '../src')}/ts/main.tsx`,
+    '/css/main': `${path.resolve(__dirname, '../src')}/scss/main.scss`
+},
+plugins: [
+    new RemoveEmptyScripts(),
+    ...
+]
+```
+- entry에서 key값으로 '폴더명/파일명' 설정한다.
+- css의 경우 빈 js 파일도 생성되므로, 이를 지워주는 플러그인인 'RemoveEmptyScripts'를 설치하여 실행한다.
+
+<br/>
+
 ##### ※ babel-loader만 사용하고, ts-loader를 사용하지 않는 이유?!
 ```
 module: {
@@ -172,6 +190,31 @@ plugins: [
 
 <br/>
 
+##### ※ 이미지 사용 시 src 폴더 구조대로 dist 폴더에 생성되도록 하는 방법
+```
+module: {
+    rules: [
+        ...
+        {
+            test: /\.(ico|png|jpe?g|gif|svg)$/,
+            type: 'asset/resource',
+            generator: {
+                // img 폴더 바로 하위에 모든 파일이 들어옴
+                //filename: 'img/[name][ext]' 
+
+                // pathData에서 폴더 경로가 포함된 filename 추출하여 사용함
+                filename(pathData) {
+                    const { filename } = pathData || {};
+                    return filename ? filename.replace('src', '') : filename;
+                }
+            }
+        }
+    ]
+}
+```
+
+<br/>
+
 #### ※ webpack.dev.js
 ```
 devServer: {
@@ -200,7 +243,8 @@ optimization: {
                 compress: {
                     drop_console: true
                 }
-            }
+            },
+            extractComments: true // 주석을 모아 LICENSE.txt 파일 생성함
         }),
         new CssMinimizerPlugin()
     ],

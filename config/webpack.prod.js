@@ -10,7 +10,7 @@ module.exports = merge(common, {
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, '../dist'),
-        publicPath: './',
+        //publicPath: './',
         clean: true
     },
     optimization: {
@@ -22,7 +22,8 @@ module.exports = merge(common, {
                     compress: {
                         drop_console: true
                     }
-                }
+                },
+                extractComments: true
             }),
             new CssMinimizerPlugin()
         ],
