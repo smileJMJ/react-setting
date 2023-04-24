@@ -140,6 +140,8 @@ plugins: [
 ```
 - entry에서 key값으로 '폴더명/파일명' 설정한다.
 - css의 경우 빈 js 파일도 생성되므로, 이를 지워주는 플러그인인 'RemoveEmptyScripts'를 설치하여 실행한다.
+- 위와 같이 설정하였을 때, optimization.splitChunks.chunks: 'all' / 'initial'로 설정 시 react 및 라이브러리들은 별도 청크파일로 변환되고, src/ts 코드들은 entry에서 지정한 파일명으로 번들됨
+- chunks: 'async'로 변경하면 하나의 파일로 번들됨
 
 <br/>
 
