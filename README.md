@@ -13,7 +13,7 @@ npm install react react-dom
 
 ## 2. webpack 설치
 ```
-npm install --save-dev webpack webpack-bundle-analyzer webpack-cli webpack-dev-server webpack-merge
+npm install --save-dev webpack webpack-bundle-analyzer webpack-cli webpack-dev-server webpack-merge webpack-remove-empty-scripts
 ```   
 #### ※ webpack-bundle-analyzer   
 - 번들에서 어떠한 파일이 얼마나 용량을 차지하는지 알 수 있음
@@ -297,7 +297,7 @@ optimization: {
 ## 9. tsconfig.json 셋팅
 ```
 // tsconfig.json 생성 (직접 생성도 가능)
-npx tsc init
+npx tsc --init
 
 // tsconfig.json 구성
 ```
@@ -529,6 +529,12 @@ Mutate 함수를 통한 상태 업데이트: React Query의 Mutate 함수를 사
 
 그러나 React Query는 주로 데이터 관리를 위해 설계되었으므로, 좀 더 복잡한 전역 상태 관리가 필요한 경우에는 다른 전용 전역 상태 관리 라이브러리인 Redux, Zustand, MobX 등을 고려해 볼 수도 있습니다. 이러한 라이브러리들은 전역 상태 관리에 특화되어 있으며, 더 복잡한 상태 관리 요구 사항을 처리할 수 있습니다.
 ```
+
+<br/>
+<br/>
+
+※ react-query로만 전역 상태관리가 가능한가?? (찾아본 내용)
+
 
 <br/>
 <br/>
