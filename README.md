@@ -32,7 +32,7 @@ npm install --save-dev webpack webpack-bundle-analyzer webpack-cli webpack-dev-s
 ## 3. module, loader 셋팅
 ```
 // babel
-npm install --save-dev @babel/cli @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript babel-loader core-js
+npm install --save-dev @babel/cli @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript @babel/plugin-proposal-class-properties babel-loader core-js
 
 // css
 npm install --save-dev css-loader css-minimizer-webpack-plugin mini-css-extract-plugin style-loader sass sass-loader
