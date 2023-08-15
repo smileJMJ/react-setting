@@ -310,7 +310,16 @@ npx tsc --init
         "noEmit": false, // js 파일 내보내지 않으려면 true를 해야하지만, declaration 뽑으려면 false로 해야 함
     ```
 
+<br/>
+<br/>
+※ moduleResolution
+https://www.typescriptlang.org/tsconfig#moduleResolution
 
+- node16 / nodeNext: 해당 값으로 선언 시, ouput JS에서 모듈을 가져와 결합할 때 import/require로 가져오는지에 따라 알맞은 알고리즘을 선택할 수 있도록 함   
+  (node12부터는 다른 알고리즘으로 가져오기를 진행하는 ECMAScript의 import, CommonJS의 require 둘다 지원함)
+- node10: CommonJS만 지원함
+- bundler: 번들러 사용을 위한 옵션. import/require 둘다 지원하지만, node16/nodenext와 달리  import/reuqire로 가져오는 상대경로에 파일 확장자를 요구하지 않음
+- classic: 이제 사용 지양함
 
 <br/>
 <br/>
