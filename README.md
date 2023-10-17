@@ -216,6 +216,92 @@ module: {
 ```
 
 <br/>
+<br/>
+
+##### ※ svg sprite 생성 플러그인 셋팅
+- svg sprite 생성 후 css에서 sprite.svg#arrow-left 처럼 사용할 수 있도록 셋팅함
+- svg-spritemap-webpack-plugin 사용함
+- (npm) https://www.npmjs.com/package/svg-spritemap-webpack-plugin
+- (option) https://github.com/cascornelissen/svg-spritemap-webpack-plugin/blob/master/docs/options.md
+
+<br/>
+
+```
+// svg-spritemap-webpack-plugin 설치
+npm install --save-dev svg-spritemap-webpack-plugin
+```
+<br/>
+
+```
+// webpack.config.js 에서 plugin 추가
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
+
+plugins: [
+    ...
+    new SVGSpritemapPlugin('src/svg/*.svg', {
+        output: {
+            filename: 'svg/sprite.svg',
+            svg: {
+                sizes: false,
+            },
+        },          
+        sprite: {
+            prefix: false,
+            generate: {
+                view: true,
+                use: true,
+                symbol: '-symbol',
+            },
+        },
+    }),
+]
+```
+
+<br/>
+
+```
+// loader: css-loader에서 svg filter 설정해야 함
+// filter로 svg를 추가해야하는 이유: css-loader에서 build 후 생성되는 sprite.svg를 src 폴더에서(상대경로) 찾은 후 해당 모듈이 없다는 에러가 발생함
+
+{
+    test: /\.(sa|sc|c)ss$/,
+    use: [
+        MiniCssExtractPlugin.loader,
+        {
+            loader: 'css-loader',
+            options: {
+                url: {
+                filter: (url) => !/\.svg#\w+/.test(url),
+                },
+            },
+        },
+        'sass-loader'
+    ]
+},
+```
+
+<br/>
+
+```
+// css에서 svg 사용 방법
+@function get-svg($name) {
+    @return '../svg/sprite.svg##{$name}';
+}
+
+@mixin mask-svg($name) {
+    mask-image: url(get-svg($name));
+    mask-repeat: no-repeat;
+    -webkit-mask-image: url(get-svg($name));
+    -webkit-mask-repeat: no-repeat;
+}
+
+.test {
+    @include mask-svg('arrow-left');
+}
+```
+
+<br/>
+<br/>
 
 #### ※ webpack.dev.js
 ```
