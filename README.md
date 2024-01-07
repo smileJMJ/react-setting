@@ -220,9 +220,11 @@ module: {
 
 ##### ※ svg sprite 생성 플러그인 셋팅
 - svg sprite 생성 후 css에서 sprite.svg#arrow-left 처럼 사용할 수 있도록 셋팅함
-- svg-spritemap-webpack-plugin 사용함
-- (npm) https://www.npmjs.com/package/svg-spritemap-webpack-plugin
-- (option) https://github.com/cascornelissen/svg-spritemap-webpack-plugin/blob/master/docs/options.md
+- webpack 사용 시 -> svg-spritemap-webpack-plugin 사용함
+    - (npm) https://www.npmjs.com/package/svg-spritemap-webpack-plugin
+    - (option) https://github.com/cascornelissen/svg-spritemap-webpack-plugin/blob/master/docs/options.md
+- vite 사용 시 -> vite-plugin-svg-spritemap 사용함
+    - https://github.com/SpiriitLabs/vite-plugin-svg-spritemap 
 
 <br/>
 
